@@ -1,6 +1,6 @@
 
 addEventListener("load", function() {
-    let time = new Date();
+    let date = new Date();
     var currentTime = date.getHours() + ":" + date.getMinutes();
 	document.getElementById("time").innerHTML = currentTime;
 
