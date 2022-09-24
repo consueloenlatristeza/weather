@@ -4,14 +4,14 @@ addEventListener("load", function() {
     var currentTime = date.getHours() + ":" + date.getMinutes();
 	document.getElementById("time").innerHTML = currentTime;
 
-    let temp = 22;
+    let temperature = 22;
 
-    document.getElementById("celcius").addEventListener("click", function(e) {
-        document.getElementById("temp").innerText = temp;
+    document.getElementById("celsius").addEventListener("click", function(e) {
+        document.getElementById("temp").innerText = temperature;
     });
 
     document.getElementById("fahrenheit").addEventListener("click", function(e) {
-        document.getElementById("temp").innerText = temp * 1.8 + 32;
+        document.getElementById("temp").innerText = temperature * 1.8 + 32;
     });
 
 
