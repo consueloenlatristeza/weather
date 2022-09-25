@@ -1,5 +1,7 @@
 
-addEventListener("load", function() {
+addEventListener("load", async function() {
+
+
     let date = new Date();
     var currentTime = date.getHours() + ":" + date.getMinutes();
 	document.getElementById("time").innerHTML = currentTime;
