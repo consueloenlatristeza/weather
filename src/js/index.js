@@ -1,4 +1,5 @@
 
+let temperature = 22;
 async function getWeather(lat, long) {
     const link = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&hourly=temperature_2m`;
     const response = await fetch(link);
@@ -9,13 +10,22 @@ async function getWeather(lat, long) {
     document.getElementById("temp").innerText = temperature;
 }
 
-addEventListener("load", async function() {
-    let temperature = 22;
+async function getPlace(place) {
+    const response = await fetch(`https://geocode.xyz/${place}?json=1&auth=135733115060413366028x34382`);
+    const cityData = await response.json();
+    if(cityData.error != null) {
+        alert("The Place cannot be found!");
+    }else {
+        await getWeather(cityData.latt, cityData.longt);
+        document.getElementById("city").innerHTML = `${cityData.standard.city}, ${cityData.standard.countryname}`;
+    }
+}
 
+addEventListener("load", async function() {
     navigator.geolocation.getCurrentPosition(async function(position) {
         const lat = position.coords.latitude;
         const long = position.coords.longitude;
-        await getWeather(lat, long);
+        await getPlace(`${lat},${long}`);
     });
 
     let date = new Date();
@@ -35,14 +45,7 @@ addEventListener("load", async function() {
     searchEl.addEventListener("keydown", async function(e) {
         if(e.key == "Enter") {
             const city = searchEl.value;
-            const response = await fetch(`https://geocode.xyz/${city}?json=1`)
-            const cityData = await response.json();
-            if(cityData.error != null) {
-                alert("The Place cannot found!");
-            }else {
-                await getWeather(cityData.latt, cityData.longt);
-                document.getElementById("city").innerHTML = `${cityData.standard.city}, ${cityData.standard.countryname}`;
-            }
+            await getPlace(city);
             searchEl.value = "";
         }
     });
