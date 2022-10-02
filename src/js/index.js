@@ -32,7 +32,10 @@ addEventListener("load", async function() {
     });
 
     let date = new Date();
-    var currentTime = date.getHours() + ":" + date.getMinutes();
+    const currentTime = date.toLocaleTimeString("default", {
+        hour: "2-digit",
+        minute: "2-digit",
+    });
 	document.getElementById("time").innerHTML = currentTime;
 
     document.getElementById("celsius").addEventListener("click", function(e) {
