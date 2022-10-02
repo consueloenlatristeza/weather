@@ -17,7 +17,10 @@ async function getPlace(place) {
         alert("The Place cannot be found!");
     }else {
         await getWeather(cityData.latt, cityData.longt);
-        document.getElementById("city").innerHTML = `${cityData.standard.city}, ${cityData.standard.countryname}`;
+        const city = cityData.city ? cityData.city : cityData.standard.city;
+        const country = cityData.country ? cityData.country : cityData.standard.countryname;
+
+        document.getElementById("city").innerHTML = `${city}, ${country}`;
     }
 }
 
