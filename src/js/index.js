@@ -43,7 +43,7 @@ addEventListener("load", async function() {
     });
 
     document.getElementById("fahrenheit").addEventListener("click", function(e) {
-        document.getElementById("temp").innerText = temperature * 1.8 + 32;
+        document.getElementById("temp").innerText = Math.round((temperature * 1.8 + 32) * 100) / 100;
     });
 
 
