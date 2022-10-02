@@ -1,5 +1,5 @@
 
-function getWeather(lat, long) {
+async function getWeather(lat, long) {
     const link = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&hourly=temperature_2m`;
     const response = await fetch(link);
     const weatherData = await response.json();
@@ -15,7 +15,7 @@ addEventListener("load", async function() {
     navigator.geolocation.getCurrentPosition(async function(position) {
         const lat = position.coords.latitude;
         const long = position.coords.longitude;
-        getWeather(lat, long);
+        await getWeather(lat, long);
     });
 
     let date = new Date();
@@ -40,7 +40,7 @@ addEventListener("load", async function() {
             if(cityData.error != null) {
                 alert("The Place cannot found!");
             }else {
-                getWeather(cityData.latt, cityData.longt);
+                await getWeather(cityData.latt, cityData.longt);
                 document.getElementById("city").innerHTML = `${cityData.standard.city}, ${cityData.standard.countryname}`;
             }
             searchEl.value = "";
