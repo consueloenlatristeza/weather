@@ -4,7 +4,7 @@
 
 let temperature = 22;
 async function getWeather(lat, long) {
-    const link = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&hourly=temperature_2m`;
+    //const link = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&hourly=temperature_2m`;
 
     const date = new Date();
     const date2 = new Date();
