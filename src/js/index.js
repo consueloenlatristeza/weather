@@ -1,13 +1,39 @@
 
+//import {WeatherElement} from "./WeatherElement.class.js";
+//customElements.define("weather", WeatherElement);
+
 let temperature = 22;
 async function getWeather(lat, long) {
     const link = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&hourly=temperature_2m`;
+
+    const date = new Date();
+    const date2 = new Date();
+    date2.setDate(date2.getDate() + 5);
+    const startDate = date.toISOString().split("T")[0];
+    const endDate = date.toISOString().split("T")[0];
+    const link = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&start_date=${startDate}&end_date=${endDate}&hourly=temperature_2m,relativehumidity_2m,weathercode,windspeed_10m`
     const response = await fetch(link);
     const weatherData = await response.json();
 
-    const date = new Date();
-    temperature = weatherData.hourly["temperature_2m"][date.getHours()];
+    const wId = date.getHours();
+    temperature = weatherData.hourly["temperature_2m"][wId];
     document.getElementById("temp").innerText = temperature;
+
+    const hum = weatherData.hourly["relativehumidity_2m"][wId];
+    document.getElementById("hum").innerText = hum;
+
+    const speed = weatherData.hourly["windspeed_10m"][wId];
+    document.getElementById("speed").innerText = speed;
+    
+/*
+    for(let i=1; i<6; i++) {
+        const dateId = 24 * i + 1;
+        const dateTemperature = weatherData.hourly["temperature_2m"][dateId];
+        const day = "Monday";
+        const type = "cloudy";
+        const wEl = document.createElement("weather");
+        wEl.build();
+    }*/
 }
 
 async function getPlace(place) {
@@ -17,7 +43,7 @@ async function getPlace(place) {
         alert("The Place cannot be found!");
     }else {
         await getWeather(cityData.latt, cityData.longt);
-        const city = cityData.city ? cityData.city : cityData.standard.city;
+        const city = cityData.city != null ? cityData.city : cityData.standard.city;
         const country = cityData.country ? cityData.country : cityData.standard.countryname;
 
         document.getElementById("city").innerHTML = `${city}, ${country}`;

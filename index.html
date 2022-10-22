@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
     <link rel="stylesheet" href="./src/css/index.css">
-    <script src="./src/js/index.js"></script>
+    <script src="./src/js/index.js" type="modules"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
@@ -25,7 +25,7 @@
             <section>
                 <h3 id="city">Toronto, Canada</h3>
                 <div>
-                    <h1 id="temp">22</h1>
+                    <h1 id="temp0">22</h1>
                     <span>
                         <a href="#" id="celsius">°C </a>|
                         <a href="#" id="fahrenheit"> F</a>
@@ -34,28 +34,27 @@
             </section>
             <img src="./assets/images/weather.jpg" alt="The Weather" style="width: 100px !important;">
             <section class="weather-data">
-                <div>Partly sunny</div>
-                <div>Humidity: 10%</div>
-                <div>Wind: 2km/h</div>
+                <div>Humidity: <span id="hum">10</span>%</div>
+                <div>Wind: <span id="speed">2</span>km/h</div>
             </section>
         </header>
         <section>
             <h3 id="time">Today</h3>
             <span><u>5 days</u> Forecast</span>
         </section>
-        <footer>
+        <!--<footer>
             <section>
                 <div>
                     <h4>Monday</h4>
-                    <span>Cloudy</span>
+                    <span id="type1">Cloudy</span>
                     <span>
-                        <h2>14°</h2>
+                        <h2><span id="temp1">14</span>°</h2>
                     </span>
                 </div>
                 <div>
-                    <span class="material-icons">cloudy</span>
+                    <span class="material-icons" id="typeIcon1">cloudy</span>
                 </div>
-            </section>
+            </section>   
             <section>
                 <div>
                     <h4>Tuesday</h4>
@@ -104,7 +103,8 @@
                     <span class="material-icons">sunny</span>
                 </div>
             </section>
-        </footer>
+        </footer>-->
     </main>
+    <a href="https://github.com/consueloenlatristeza/weather">Open-Source code</a> by Mary
 </body>
 </html>
